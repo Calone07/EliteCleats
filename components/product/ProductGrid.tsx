@@ -1,11 +1,24 @@
+import { Grid } from "@/components/ui/Grid";
+
 interface ProductGridProps {
   children: React.ReactNode;
 }
 
+/**
+ * Responsive grid for product cards. Thin wrapper around `Grid`
+ * with default column breakpoints (1 → 2 → 3 → 4).
+ *
+ * @deprecated Prefer direct use of `Grid` with explicit `cols`.
+ *
+ * @example
+ * <ProductGrid>
+ *   {boots.map((boot) => <ProductCard key={boot.id} boot={boot} />)}
+ * </ProductGrid>
+ */
 export function ProductGrid({ children }: ProductGridProps) {
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <Grid cols={{ default: 1, sm: 2, lg: 3, xl: 4 }} gap={6}>
       {children}
-    </div>
+    </Grid>
   );
 }

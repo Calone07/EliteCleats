@@ -1,18 +1,22 @@
-import { Hero } from "@/components/home/Hero";
-import { FeaturedBrands } from "@/components/home/FeaturedBrands";
-import { FeaturedBoots } from "@/components/home/FeaturedBoots";
-import { WhyChooseUs } from "@/components/home/WhyChooseUs";
-import { Collections } from "@/components/home/Collections";
-import { Newsletter } from "@/components/home/Newsletter";
+import { Hero } from "@/features/home/Hero";
+import { BrandStrip } from "@/features/home/BrandStrip";
+import { FeaturedCollection } from "@/features/home/FeaturedCollection";
+import { FeaturedBoots } from "@/features/home/FeaturedBoots";
+import { ShopBySurface } from "@/features/home/ShopBySurface";
+import { TechnologyShowcase } from "@/features/home/TechnologyShowcase";
+import { WhyEliteCleats } from "@/features/home/WhyEliteCleats";
+import { Newsletter } from "@/features/home/Newsletter";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <FeaturedBrands />
+      <BrandStrip />
+      <FeaturedCollection />
       <FeaturedBoots />
-      <WhyChooseUs />
-      <Collections />
+      <ShopBySurface />
+      <TechnologyShowcase />
+      <WhyEliteCleats />
       <Newsletter />
     </>
   );

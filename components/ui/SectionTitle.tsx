@@ -1,33 +1,49 @@
+import { cn } from "@/lib/utils";
+import { Heading } from "@/components/ui/Heading";
+import { Text } from "@/components/ui/Text";
+
 interface SectionTitleProps {
   title: string;
   subtitle?: string;
   className?: string;
+  /** Invert colors for use on dark/colored backgrounds. */
   light?: boolean;
 }
 
+/**
+ * Section heading with optional subtitle. Typically used at the top of
+ * homepage sections above a grid or card layout.
+ *
+ * @example
+ * <SectionTitle
+ *   title="Featured Brands"
+ *   subtitle="The world's leading football boot manufacturers."
+ * />
+ *
+ * <SectionTitle title="Speed Collection" light />
+ */
 export function SectionTitle({
   title,
   subtitle,
-  className = "",
+  className,
   light = false,
 }: SectionTitleProps) {
   return (
-    <div className={`mb-12 sm:mb-16 ${className}`}>
-      <h2
-        className={`text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight ${
-          light ? "text-primary-bg" : "text-primary-text"
-        }`}
+    <div className={cn("mb-12 sm:mb-16", className)}>
+      <Heading
+        as="h2"
+        className={light ? "text-primary-bg" : undefined}
       >
         {title}
-      </h2>
+      </Heading>
       {subtitle && (
-        <p
-          className={`mt-4 text-lg sm:text-xl max-w-2xl ${
-            light ? "text-primary-bg/70" : "text-secondary-text"
-          }`}
+        <Text
+          variant="body"
+          color={light ? undefined : "secondary"}
+          className={cn("mt-4 max-w-2xl", light && "text-primary-bg/70")}
         >
           {subtitle}
-        </p>
+        </Text>
       )}
     </div>
   );

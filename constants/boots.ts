@@ -9,6 +9,7 @@ export const boots: Boot[] = [
     rating: 4.8,
     image: "/images/boots/mercurial-vapor.jpg",
     badge: "Best Seller",
+    surface: "FG",
   },
   {
     id: "adidas-f50",
@@ -18,6 +19,7 @@ export const boots: Boot[] = [
     rating: 4.7,
     image: "/images/boots/adidas-f50.jpg",
     badge: "New",
+    surface: "AG",
   },
   {
     id: "puma-future",
@@ -26,6 +28,7 @@ export const boots: Boot[] = [
     price: 230,
     rating: 4.6,
     image: "/images/boots/puma-future.jpg",
+    surface: "SG",
   },
   {
     id: "nike-phantom-gx",
@@ -34,6 +37,7 @@ export const boots: Boot[] = [
     price: 260,
     rating: 4.7,
     image: "/images/boots/phantom-gx.jpg",
+    surface: "FG",
   },
   {
     id: "adidas-predator",
@@ -43,6 +47,7 @@ export const boots: Boot[] = [
     rating: 4.8,
     image: "/images/boots/adidas-predator.jpg",
     badge: "Limited",
+    surface: "FG",
   },
   {
     id: "mizuno-morelia",
@@ -51,6 +56,7 @@ export const boots: Boot[] = [
     price: 310,
     rating: 4.9,
     image: "/images/boots/mizuno-morelia.jpg",
+    surface: "AG",
   },
   {
     id: "new-balance-442",
@@ -59,6 +65,7 @@ export const boots: Boot[] = [
     price: 220,
     rating: 4.5,
     image: "/images/boots/new-balance-442.jpg",
+    surface: "TF",
   },
   {
     id: "puma-ultra",
@@ -67,5 +74,6 @@ export const boots: Boot[] = [
     price: 240,
     rating: 4.4,
     image: "/images/boots/puma-ultra.jpg",
+    surface: "IC",
   },
 ];

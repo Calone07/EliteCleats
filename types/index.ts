@@ -6,6 +6,7 @@ export interface Boot {
   rating: number;
   image: string;
   badge?: string;
+  surface: SurfaceLabel;
 }
 
 export interface Brand {
@@ -25,4 +26,26 @@ export interface Collection {
 export interface NavLink {
   label: string;
   href: string;
+}
+
+export type SurfaceLabel = "FG" | "AG" | "SG" | "TF" | "IC";
+
+export interface Surface {
+  id: string;
+  title: string;
+  label: SurfaceLabel;
+  description: string;
+  icon: string;
+}
+
+export interface Technology {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
+export interface AnnouncementMessage {
+  id: string;
+  text: string;
 }

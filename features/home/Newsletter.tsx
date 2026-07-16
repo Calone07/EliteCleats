@@ -1,6 +1,8 @@
 "use client";
 
 import { Container } from "@/components/ui/Container";
+import { Heading } from "@/components/ui/Heading";
+import { Text } from "@/components/ui/Text";
 
 export function Newsletter() {
   return (
@@ -10,39 +12,50 @@ export function Newsletter() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.06)_0%,transparent_60%)]" />
 
           <div className="relative z-10 mx-auto max-w-xl">
-            <h2 className="text-3xl font-bold tracking-tight text-primary-text sm:text-4xl">
+            <Heading
+              as="h2"
+              className="text-3xl sm:text-4xl"
+            >
               Stay in the Loop
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-secondary-text sm:text-base">
+            </Heading>
+            <Text
+              variant="body"
+              color="secondary"
+              className="mt-4"
+            >
               Be the first to know about new drops, exclusive offers, and
               limited releases.
-            </p>
+            </Text>
 
             <form
               onSubmit={(e) => e.preventDefault()}
               className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
             >
-              <label htmlFor="email" className="sr-only">
+              <label htmlFor="newsletter-email" className="sr-only">
                 Email address
               </label>
               <input
-                id="email"
+                id="newsletter-email"
                 type="email"
                 placeholder="Enter your email"
                 required
-                className="flex-1 rounded-lg border border-border bg-card-bg px-4 py-3 text-sm text-primary-text placeholder-secondary-text outline-none transition-colors duration-200 focus:border-accent/50"
+                className="flex-1 rounded-lg border border-border bg-card-bg px-4 py-3 text-sm text-primary-text placeholder-secondary-text outline-none transition-colors duration-200 focus:border-accent/50 focus:ring-1 focus:ring-accent/30"
               />
               <button
                 type="submit"
-                className="rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-primary-bg transition-all duration-200 hover:bg-accent/90"
+                className="rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-primary-bg transition-all duration-200 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-primary-bg"
               >
                 Subscribe
               </button>
             </form>
 
-            <p className="mt-4 text-xs text-secondary-text">
+            <Text
+              variant="small"
+              color="secondary"
+              className="mt-4"
+            >
               No spam. Unsubscribe anytime.
-            </p>
+            </Text>
           </div>
         </div>
       </Container>

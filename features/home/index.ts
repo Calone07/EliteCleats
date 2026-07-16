@@ -1,0 +1,8 @@
+export { Hero } from "./Hero";
+export { BrandStrip } from "./BrandStrip";
+export { FeaturedCollection } from "./FeaturedCollection";
+export { FeaturedBoots } from "./FeaturedBoots";
+export { ShopBySurface } from "./ShopBySurface";
+export { TechnologyShowcase } from "./TechnologyShowcase";
+export { WhyEliteCleats } from "./WhyEliteCleats";
+export { Newsletter } from "./Newsletter";

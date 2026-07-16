@@ -3,6 +3,11 @@
 import { useState } from "react";
 import { Heart } from "lucide-react";
 import type { Boot } from "@/types";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { Price } from "@/components/ui/Price";
+import { Rating } from "@/components/ui/Rating";
+import { Text } from "@/components/ui/Text";
 
 const gradients = [
   "from-red-900/40 via-red-950/20 to-transparent",
@@ -17,21 +22,28 @@ const gradients = [
 
 interface ProductCardProps {
   boot: Boot;
+  /** Used to assign a deterministic gradient. */
   index: number;
 }
 
+/**
+ * Boot product card with image placeholder, details, favorite toggle,
+ * and quick-view action. Intended for use inside a Grid or ProductGrid.
+ */
 export function ProductCard({ boot, index }: ProductCardProps) {
   const [isFavorited, setIsFavorited] = useState(false);
 
   return (
-    <div className="group relative rounded-xl border border-border bg-card-bg transition-all duration-300 hover:scale-[1.02] hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5">
+    <Card hover padding="none" as="article">
       <div
         className={`relative aspect-square overflow-hidden rounded-t-xl bg-gradient-to-br ${gradients[index % gradients.length]}`}
       >
         {boot.badge && (
-          <span className="absolute left-3 top-3 z-10 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-primary-bg">
-            {boot.badge}
-          </span>
+          <div className="absolute left-3 top-3 z-10">
+            <Badge variant="accent" size="md">
+              {boot.badge}
+            </Badge>
+          </div>
         )}
 
         <button
@@ -48,22 +60,19 @@ export function ProductCard({ boot, index }: ProductCardProps) {
       </div>
 
       <div className="p-4 sm:p-5">
-        <p className="text-xs font-medium uppercase tracking-wider text-secondary-text">
+        <Text variant="overline" color="secondary">
           {boot.brand}
-        </p>
+        </Text>
         <h3 className="mt-1 text-base font-semibold text-primary-text sm:text-lg">
           {boot.name}
         </h3>
 
-        <div className="mt-3 flex items-center gap-1.5">
-          <span className="text-sm text-accent">★</span>
-          <span className="text-sm text-secondary-text">{boot.rating}</span>
+        <div className="mt-3">
+          <Rating value={boot.rating} size="sm" />
         </div>
 
         <div className="mt-4 flex items-center justify-between">
-          <span className="text-lg font-bold text-primary-text">
-            ${boot.price}
-          </span>
+          <Price amount={boot.price} size="md" />
           <button
             aria-label="Quick view"
             className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-secondary-text transition-all duration-200 hover:border-accent/30 hover:text-accent"
@@ -72,6 +81,6 @@ export function ProductCard({ boot, index }: ProductCardProps) {
           </button>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
