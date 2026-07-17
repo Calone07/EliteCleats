@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Heart } from "lucide-react";
-import type { Boot } from "@/types";
+import type { Product } from "@/types";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Price } from "@/components/ui/price";
@@ -21,27 +22,33 @@ const gradients = [
 ];
 
 interface ProductCardProps {
-  boot: Boot;
-  /** Used to assign a deterministic gradient. */
+  product: Product;
   index: number;
 }
 
-/**
- * Boot product card with image placeholder, details, favorite toggle,
- * and quick-view action. Intended for use inside a Grid or ProductGrid.
- */
-export function ProductCard({ boot, index }: ProductCardProps) {
+export function ProductCard({ product, index }: ProductCardProps) {
   const [isFavorited, setIsFavorited] = useState(false);
+  const heroImage = product.images[0];
 
   return (
     <Card hover padding="none" as="article">
       <div
         className={`relative aspect-square overflow-hidden rounded-t-xl bg-gradient-to-br ${gradients[index % gradients.length]}`}
       >
-        {boot.badge && (
+        {heroImage && (
+          <Image
+            src={heroImage.url}
+            alt={heroImage.alt}
+            fill
+            className="object-contain p-2 transition-transform duration-500 hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        )}
+
+        {product.badge && (
           <div className="absolute left-3 top-3 z-10">
             <Badge variant="accent" size="md">
-              {boot.badge}
+              {product.badge}
             </Badge>
           </div>
         )}
@@ -61,18 +68,18 @@ export function ProductCard({ boot, index }: ProductCardProps) {
 
       <div className="p-4 sm:p-5">
         <Text variant="overline" color="secondary">
-          {boot.brand}
+          {product.brand}
         </Text>
         <h3 className="mt-1 text-base font-semibold text-primary-text sm:text-lg">
-          {boot.name}
+          {product.name}
         </h3>
 
         <div className="mt-3">
-          <Rating value={boot.rating} size="sm" />
+          <Rating value={product.rating} size="sm" />
         </div>
 
         <div className="mt-4 flex items-center justify-between">
-          <Price amount={boot.price} size="md" />
+          <Price amount={product.price} size="md" />
           <button
             aria-label="Quick view"
             className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-secondary-text transition-all duration-200 hover:border-accent/30 hover:text-accent"

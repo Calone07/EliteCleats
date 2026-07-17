@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
-const heroImage = "/images/boots/hero-boot.jpg";
+const heroImage = "/images/boots/nike/kevinfooty_-hero.webp";
 
 export function Hero() {
   return (

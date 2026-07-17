@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/typography";
 import { Text } from "@/components/ui/typography";
 
-const collectionImage = "/images/collections/featured-collection.jpg";
+const collectionImage = "/images/collections/nike-mercurial.webp";
 
 export function FeaturedCollection() {
   return (
