@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Navbar, Footer } from "@/components/layout";
+import { MotionProvider } from "@/motion";
 import "./globals.css";
 
 const inter = Inter({
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-primary-bg text-primary-text antialiased">
-        <Navbar />
-        <main className="flex-1 pt-[104px] sm:pt-[120px]">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Navbar />
+          <main className="flex-1 pt-[104px] sm:pt-[120px]">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );
