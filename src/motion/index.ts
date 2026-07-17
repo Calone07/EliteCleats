@@ -7,6 +7,7 @@ export {
   useScrollProgress,
   useStagger,
   useHeroAnimation,
+  useShowcaseAnimation,
 } from "./hooks";
 
 export {

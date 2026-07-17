@@ -4,3 +4,4 @@ export { useParallax } from "./useParallax";
 export { useScrollProgress } from "./useScrollProgress";
 export { useStagger } from "./useStagger";
 export { useHeroAnimation } from "./useHeroAnimation";
+export { useShowcaseAnimation } from "./useShowcaseAnimation";

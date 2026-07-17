@@ -1,4 +1,5 @@
 export { Hero } from "./Hero"
+export { BootShowcase } from "./BootShowcase"
 export { BrandStrip } from "./BrandStrip"
 export { FeaturedCollection } from "./FeaturedCollection"
 export { FeaturedBoots } from "./FeaturedBoots"

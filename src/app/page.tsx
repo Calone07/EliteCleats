@@ -1,5 +1,6 @@
 import {
   Hero,
+  BootShowcase,
   BrandStrip,
   FeaturedCollection,
   FeaturedBoots,
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <BootShowcase />
       <BrandStrip />
       <FeaturedCollection />
       <FeaturedBoots />
