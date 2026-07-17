@@ -128,7 +128,7 @@ function PresetDemo() {
 }
 
 function HeroTimelineDemo() {
-  const ref = useHeroAnimation();
+  const ref = useHeroAnimation(true);
   return (
     <div ref={ref} className="flex flex-col items-center gap-6 text-center">
       <p data-hero-label className="text-sm uppercase tracking-[0.25em] text-accent">

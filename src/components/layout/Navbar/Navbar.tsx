@@ -1,27 +1,63 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Search, Heart, ShoppingBag, Menu, X } from "lucide-react";
 import { navLinks } from "@/data/navigation";
 import { announcements } from "@/data/announcements";
 import { Button } from "@/components/ui/button";
+import { duration, easing } from "@/motion/constants";
+import { isReducedMotion } from "@/motion/utils";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [announcementIndex, setAnnouncementIndex] = useState(0);
+  const headerRef = useRef<HTMLElement>(null);
+  const navBgRef = useRef<HTMLDivElement>(null);
+  const initialized = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (!isHome || initialized.current || isReducedMotion()) return;
+    initialized.current = true;
+
+    const navBg = navBgRef.current;
+    if (!navBg) return;
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: headerRef.current,
+        start: "top -40px",
+        end: "top -41px",
+        onEnter: () => {
+          gsap.to(navBg, {
+            backgroundColor: "rgba(10, 10, 10, 0.9)",
+            boxShadow: "0 4px 24px rgba(0, 0, 0, 0.1)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+            duration: duration.fast,
+            ease: easing.standard,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(navBg, {
+            backgroundColor: "rgba(10, 10, 10, 0)",
+            boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
+            borderBottom: "0px solid rgba(255, 255, 255, 0)",
+            duration: duration.fast,
+            ease: easing.standard,
+          });
+        },
+      });
+    }, navBg);
+
+    return () => ctx.revert();
+  }, [isHome]);
 
   useEffect(() => {
     if (!isHome) return;
@@ -47,9 +83,8 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 ${
-        isScrolled ? "shadow-lg shadow-black/10" : ""
-      }`}
+      ref={headerRef}
+      className="fixed top-0 left-0 right-0 z-50"
     >
       {isHome && (
         <div
@@ -70,11 +105,14 @@ export function Navbar() {
       )}
 
       <div
-        className={`transition-all duration-300 ${
-          isScrolled
-            ? "bg-primary-bg/95 backdrop-blur-md border-b border-border"
-            : "bg-transparent"
-        } ${isHome ? announcementHeight : ""}`}
+        ref={navBgRef}
+        className={`will-change-[background-color,box-shadow] backdrop-blur-xl ${
+          isHome ? announcementHeight : ""
+        }`}
+        style={{
+          backgroundColor: isHome ? "rgba(10,10,10,0)" : "rgba(10,10,10,0.9)",
+          borderBottom: isHome ? "0px solid rgba(255,255,255,0)" : "1px solid rgba(255,255,255,0.06)",
+        }}
       >
         <nav
           className={`mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 ${navHeight}`}
@@ -143,7 +181,7 @@ export function Navbar() {
       </div>
 
       <div
-        className={`fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-primary-bg border-l border-border shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-primary-bg/95 backdrop-blur-xl border-l border-border shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         role="dialog"
