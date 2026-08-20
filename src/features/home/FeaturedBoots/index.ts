@@ -1,0 +1,1 @@
+export { FeaturedBoots } from "./FeaturedBoots"

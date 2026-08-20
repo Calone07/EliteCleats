@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary-bg: #0A0A0A;
+  --color-secondary-bg: #111111;
+  --color-card-bg: #171717;
+  --color-primary-text: #FFFFFF;
+  --color-secondary-text: #B3B3B3;
+  --color-accent: #D4AF37;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-success: #22C55E;
+  --color-error: #EF4444;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+}
+
+body {
+  background: var(--color-primary-bg);
+  color: var(--color-primary-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.text-shadow-hero {
+  text-shadow:
+    0 2px 24px rgba(0, 0, 0, 0.8),
+    0 1px 4px rgba(0, 0, 0, 0.9);
+}
